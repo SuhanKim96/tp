@@ -340,13 +340,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  Data should be automatically saved to the local hard disk after every command that modifies data to prevent loss during a crash.
+5.  Candidate phone numbers and personal data must be stored in a human-readable but localized format, ensuring no data is transmitted to external servers without consent.
+6.  100% of the application’s features must be accessible via keyboard shortcuts, catering to high-speed "power users" in recruiting
+7.  The system must provide immediate visual confirmation (e.g., a status message or color change) within 50ms of a command being executed to confirm the action was successful.
+8.  The "Delete" function must ensure that all traces of a candidate’s phone number are purged from the local state, helping the manager remain compliant with data privacy laws like GDPR or PDPA.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Candidate**: An individual whose contact details and hiring status are being tracked in the system.
+* **CLI (Command Line Interface)**: The primary text-based input method used by the Talent Scout to interact with the application without using a mouse.
+* **Auto-completion**: A productivity feature where the user presses the Tab key to have the system suggest or finish a command or parameter, reducing typing effort.
+* **Batch-import**: The process of pulling multiple candidate records into the system at once from an external file (like a university portal list) rather than adding them individually.
+* **Duplicate Entry**: A record that matches an existing contact based on the Primary Key (the unique combination of Name + Phone Number).
+* **Source**: The origin of the candidate's data (e.g., LinkedIn, GitHub, or a specific University Career Portal).
 
 --------------------------------------------------------------------------------------------------------------------
 
