@@ -5,8 +5,8 @@ import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.hireshell.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -19,7 +19,7 @@ import seedu.hireshell.model.person.Person;
 import seedu.hireshell.model.person.Phone;
 import seedu.hireshell.model.person.Rating;
 import seedu.hireshell.model.person.Status;
-import seedu.hireshell.model.tag.Tag;
+import seedu.hireshell.model.role.Role;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -34,7 +34,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                        PREFIX_EMAIL, PREFIX_RATING, PREFIX_STATUS, PREFIX_TAG);
+                        PREFIX_RATING, PREFIX_EMAIL, PREFIX_STATUS, PREFIX_ROLE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STATUS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_RATING)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -47,9 +47,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get());
         Status status = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_STATUS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Role> roleList = ParserUtil.parseRoles(argMultimap.getAllValues(PREFIX_ROLE));
 
-        Person person = new Person(name, phone, email, rating, status, tagList);
+        Person person = new Person(name, phone, email, rating, status, roleList);
 
         return new AddCommand(person);
     }

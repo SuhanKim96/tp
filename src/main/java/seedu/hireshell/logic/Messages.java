@@ -45,8 +45,8 @@ public class Messages {
                 .append(person.getRating())
                 .append("; Status: ")
                 .append(person.getStatus())
-                .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+                .append("; Roles: ");
+        person.getRoles().forEach(builder::append);
         return builder.toString();
     }
 

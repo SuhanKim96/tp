@@ -12,7 +12,7 @@ import seedu.hireshell.model.person.Person;
 import seedu.hireshell.model.person.Phone;
 import seedu.hireshell.model.person.Rating;
 import seedu.hireshell.model.person.Status;
-import seedu.hireshell.model.tag.Tag;
+import seedu.hireshell.model.role.Role;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -22,22 +22,22 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Rating("8.5"), new Status("Accepted"),
-                getTagSet("friends")),
+                getRoleSet("friends")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Rating("9.0"), new Status("Offered"),
-                getTagSet("colleagues", "friends")),
+                getRoleSet("colleagues", "friends")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Rating("6.0"), new Status("Offered"),
-                getTagSet("neighbours")),
+                getRoleSet("neighbours")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Rating("7.0"), new Status("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
+                getRoleSet("family")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Rating("9.5"), new Status("Offered"),
-                getTagSet("classmates")),
+                getRoleSet("classmates")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Rating("5.5"), new Status("Rejected"),
-                getTagSet("colleagues"))
+                getRoleSet("colleagues"))
         };
     }
 
@@ -50,11 +50,11 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a tag set containing the list of strings given.
+     * Returns a role set containing the list of strings given.
      */
-    public static Set<Tag> getTagSet(String... strings) {
+    public static Set<Role> getRoleSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
+                .map(Role::new)
                 .collect(Collectors.toSet());
     }
 

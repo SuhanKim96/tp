@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.hireshell.commons.util.ToStringBuilder;
-import seedu.hireshell.model.tag.Tag;
+import seedu.hireshell.model.role.Role;
 
 /**
  * Represents a Person in the address book.
@@ -24,19 +24,19 @@ public class Person {
     // Data fields
     private final Rating rating;
     private final Status status;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Role> roles = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Rating rating, Status status, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, status, tags);
+    public Person(Name name, Phone phone, Email email, Rating rating, Status status, Set<Role> roles) {
+        requireAllNonNull(name, phone, email, status, roles);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.rating = rating;
         this.status = status;
-        this.tags.addAll(tags);
+        this.roles.addAll(roles);
     }
 
     public Name getName() {
@@ -60,11 +60,11 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable role set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Role> getRoles() {
+        return Collections.unmodifiableSet(roles);
     }
 
     /**
@@ -101,13 +101,13 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && rating.equals(otherPerson.rating)
                 && status.equals(otherPerson.status)
-                && tags.equals(otherPerson.tags);
+                && roles.equals(otherPerson.roles);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, rating, status, tags);
+        return Objects.hash(name, phone, email, rating, status, roles);
     }
 
     @Override
@@ -118,7 +118,7 @@ public class Person {
                 .add("email", email)
                 .add("rating", rating)
                 .add("status", status)
-                .add("tags", tags)
+                .add("roles", roles)
                 .toString();
     }
 

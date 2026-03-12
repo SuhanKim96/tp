@@ -16,7 +16,7 @@ import seedu.hireshell.model.person.Person;
 import seedu.hireshell.model.person.Phone;
 import seedu.hireshell.model.person.Rating;
 import seedu.hireshell.model.person.Status;
-import seedu.hireshell.model.tag.Tag;
+import seedu.hireshell.model.role.Role;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -29,8 +29,8 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String rating;
     private final String email;
+    private final List<JsonAdaptedRole> roles = new ArrayList<>();
     private final String status;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -38,14 +38,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("rating") String rating,
-            @JsonProperty("status") String status, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("status") String status, @JsonProperty("roles") List<JsonAdaptedRole> roles) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.rating = rating;
         this.status = status;
-        if (tags != null) {
-            this.tags.addAll(tags);
+        if (roles != null) {
+            this.roles.addAll(roles);
         }
     }
 
@@ -58,8 +58,8 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         rating = source.getRating().toString();
         status = source.getStatus().value;
-        tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        roles.addAll(source.getRoles().stream()
+                .map(JsonAdaptedRole::new)
                 .collect(Collectors.toList()));
     }
 
@@ -69,9 +69,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
+        final List<Role> personRoles = new ArrayList<>();
+        for (JsonAdaptedRole role : roles) {
+            personRoles.add(role.toModelType());
         }
 
         if (name == null) {
@@ -114,8 +114,8 @@ class JsonAdaptedPerson {
         }
         final Status modelStatus = new Status(status);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelRating, modelStatus, modelTags);
+        final Set<Role> modelRoles = new HashSet<>(personRoles);
+        return new Person(modelName, modelPhone, modelEmail, modelRating, modelStatus, modelRoles);
     }
 
 }

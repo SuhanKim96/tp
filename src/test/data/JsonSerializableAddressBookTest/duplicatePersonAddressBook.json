@@ -5,7 +5,7 @@
     "email": "alice@example.com",
     "rating": "8.0",
     "status": "123, Jurong West Ave 6, #08-111",
-    "tags": [ "friends" ]
+    "roles": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
