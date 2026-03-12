@@ -189,32 +189,36 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + STATUS_DESC_BOB
+        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + RATING_DESC_BOB
                 + STATUS_DESC_BOB + ROLE_DESC_HUSBAND + ROLE_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + STATUS_DESC_BOB
-                + STATUS_DESC_BOB+ ROLE_DESC_HUSBAND + ROLE_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + RATING_DESC_BOB
+                + STATUS_DESC_BOB + ROLE_DESC_HUSBAND + ROLE_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + STATUS_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + RATING_DESC_BOB
                 + STATUS_DESC_BOB + ROLE_DESC_HUSBAND + ROLE_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+
+        // invalid rating
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_RATING_DESC
+                + STATUS_DESC_BOB + ROLE_DESC_HUSBAND + ROLE_DESC_FRIEND, Rating.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + RATING_DESC_BOB
                 + INVALID_STATUS_DESC + ROLE_DESC_HUSBAND + ROLE_DESC_FRIEND, Status.MESSAGE_CONSTRAINTS);
 
         // invalid ROLE
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + STATUS_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + RATING_DESC_BOB
                 + STATUS_DESC_BOB + INVALID_ROLE_DESC + VALID_ROLE_FRIEND, Role.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + RATING_DESC_BOB
-                        + INVALID_STATUS_DESC, Name.MESSAGE_CONSTRAINTS);
+                + INVALID_STATUS_DESC, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                    + RATING_DESC_BOB + STATUS_DESC_BOB + ROLE_DESC_HUSBAND + ROLE_DESC_FRIEND,
+                        + RATING_DESC_BOB + STATUS_DESC_BOB + ROLE_DESC_HUSBAND + ROLE_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }
